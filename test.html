@@ -1,0 +1,70 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	<title>Min/Max Settings</title>
+	<script src="../../../../dist/2.9.3/Chart.min.js"></script>
+	<script src="../../utils.js"></script>
+	<style>
+		canvas{
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div style="width:75%;">
+		<canvas id="canvas"></canvas>
+	</div>
+	<script>
+		var config = {
+			type: 'line',
+			data: {
+				labels: ['March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [{
+					label: 'BKT',
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					data: [100, 30, 50, 20, 25, 44, -10],
+					fill: false,
+				}, {
+					label: 'Covid -19 ennuste, THL',
+					fill: false,
+					backgroundColor: window.chartColors.blue,
+					borderColor: window.chartColors.blue,
+					data: [100, 33, 22, 19, 11, 49, 30],
+				}]
+				, {
+					label: 'Työttömyys',
+					fill: false,
+					backgroundColor: window.chartColors.green,
+					borderColor: window.chartColors.blue,
+					data: [100, 23, 62, 69, 41, 69, 40],
+				}]				
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Prosenttia maaliskuulta'
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							min: 0,
+							max: 150
+						}
+					}]
+				}
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+		};
+	</script>
+</body>
+</body>
+
